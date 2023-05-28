@@ -1,0 +1,25 @@
+debug: false
+
+omdb:
+  api:
+    url: http://www.omdbapi.com/
+
+http:
+  rest_client:
+    connect_timeout_secs: 6
+    read_timeout_secs: 6
+
+cache:
+  api_keys:
+    eviction:
+      max_records: 50
+      idle_minutes: 1440
+  movies:
+    eviction:
+      max_records: 100
+      idle_minutes: 1440
+
+
+services:
+  movies:
+    search_results_limit: 5
