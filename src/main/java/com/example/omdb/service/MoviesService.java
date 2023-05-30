@@ -43,8 +43,12 @@ public class MoviesService {
         MovieResult movieResult = null;
         if (hasKey(keysCache, movieKey.getApiKey())) {
             Movie movie = moviesCache.getIfPresent(movieKey.getImdbId());
-            movieResult = MovieResult.success(movie);
-        } else {
+            if (movie != null) {
+                movieResult = MovieResult.success(movie);
+            }
+        }
+
+        if (movieResult == null) {
             movieResult = restClient.fetchMovieById(movieKey);
         }
 
